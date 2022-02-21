@@ -36,7 +36,6 @@ Future<List<SpiderwebIssue>> getIssues() async {
     var token = prefs.getString(KEY_GITHUB_TOKEN);
     if (token == null) return [];
 
-    try {
       var github = GitHub(auth: Authentication.withToken(token));
 
       List<SpiderwebIssue> issues = [];
@@ -46,9 +45,6 @@ Future<List<SpiderwebIssue>> getIssues() async {
 
       await populateLatestPRs(github, issues);
       return issues;
-    } catch (error) {
-      return [];
-    }
   });
 }
 
